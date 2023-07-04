@@ -21,20 +21,8 @@ const Home: NextPage = () => {
   }, [])
 
   const handleClickCloseButton = async (): void => {
-    const status = await fetch('/api/status')
-    const { moveDetected } = await status.json()
-    if (moveDetected) {
-      setFeedback("手を離してください")
-      setFeedbackStyle(styles.feedbackwarn)
-      notice.current.play()
-      warn.current.play()
-      return
-    }
-    setFeedbackStyle(styles.feedbackinfo)
-    setFeedback("口を閉じます")
-    announce.current.play()
     chime.current.play()
-    const bot = await fetch('/api/close')
+    const bot = await fetch('/api/send?command=on')
     console.log(await bot.json())
   }
 
@@ -44,11 +32,6 @@ const Home: NextPage = () => {
         <h1 className={styles.title}>{feedback}</h1>
       </div>
       <div className={styles.container}>
-        <Image
-          src="/img/open.png"
-          width={250}
-          height={250}
-        />
         <Image
           onClick={handleClickCloseButton}
           src="/img/close.png"
