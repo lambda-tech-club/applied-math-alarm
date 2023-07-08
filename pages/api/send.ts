@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import crypto from 'crypto'
 
 export default async function handler(req, res) {
-  const { TOKEN, SECRET, HUB_ID } = process.env
+  const { TOKEN, SECRET, DEVICE_ID } = process.env
   const t = Date.now()
   const nonce = "sb6l1dzp" // random
   const data = TOKEN + t + nonce
@@ -20,7 +20,7 @@ export default async function handler(req, res) {
   const options = {
     hostname: 'api.switch-bot.com',
     port: 443,
-    path: `/v1.1/devices/${HUB_ID}/commands`,
+    path: `/v1.1/devices/${DEVICE_ID}/commands`,
     method: 'POST',
     headers: {
       "Authorization": TOKEN,
@@ -34,7 +34,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const response = await fetch(`https://api.switch-bot.com/v1.1/devices/${HUB_ID}/commands`, options)
+    const response = await fetch(`https://api.switch-bot.com/v1.1/devices/${DEVICE_ID}/commands`, options)
     const json = await response.json()
     res.status(200).json({ message: json.message })
   } catch (error) {

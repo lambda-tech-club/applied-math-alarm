@@ -4,40 +4,38 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
-const Home: NextPage = () => {
-  const announce = useRef()
-  const notice = useRef()
+const RemoteButton = ({ command, children }) => {
   const chime = useRef()
-  const warn = useRef()
-
-  const [feedback, setFeedback] = useState()
-  const [feedbackStyle, setFeedbackStyle] = useState(styles.feedback)
 
   useEffect(() => {
-    announce.current = new Audio("/se/announce.wav")
-    notice.current = new Audio("/se/notice.wav")
     chime.current = new Audio("/se/chime.wav")
-    warn.current = new Audio("/se/warn.wav")
   }, [])
 
-  const handleClickCloseButton = async (): void => {
+  const handleClickButton = async (): void => {
     chime.current.play()
-    const bot = await fetch('/api/send?command=on')
+    const bot = await fetch(`/api/send?command=${command}`)
     console.log(await bot.json())
   }
 
   return (
     <>
-      <div className={feedbackStyle}>
-        <h1 className={styles.title}>{feedback}</h1>
-      </div>
+      <Image
+        onClick={handleClickButton}
+        src="/img/close.png"
+        width={250}
+        height={250}
+      />
+    </>
+  )
+}
+
+const Home: NextPage = () => {
+  return (
+    <>
       <div className={styles.container}>
-        <Image
-          onClick={handleClickCloseButton}
-          src="/img/close.png"
-          width={250}
-          height={250}
-        />
+        <RemoteButton command="1"></RemoteButton>
+        <RemoteButton command="2"></RemoteButton>
+        <RemoteButton command="off"></RemoteButton>
       </div>
     </>
   )
