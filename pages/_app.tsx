@@ -1,6 +1,7 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import { useRef, useEffect } from 'react'
+import Head from 'next/head'
 
 function MyApp({ Component, pageProps }: AppProps) {
   const chime = useRef()
@@ -13,7 +14,13 @@ function MyApp({ Component, pageProps }: AppProps) {
     correct.current = new Audio("/se/correct.mp3")
     incorrect.current = new Audio("/se/incorrect.mp3")
   }, [])
-  return <Component {...{...pageProps, chime, start, correct, incorrect}} />
+  return <>
+    <Head>
+      <title>絶対に起きられる目覚まし時計</title>
+      <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    </Head>
+    <Component {...{...pageProps, chime, start, correct, incorrect}} />
+  </>
 }
 
 export default MyApp

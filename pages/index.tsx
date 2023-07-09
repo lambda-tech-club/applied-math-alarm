@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router';
-import Head from 'next/head'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
@@ -22,11 +22,27 @@ const Home: NextPage = ({chime, start}) => {
     router.push('/det')
   }
 
+  const [isFlash, setflash] = useState(false);
+  const time = new Date()
+  useEffect(() => {
+    setInterval(() => {
+      setflash(true)
+      setTimeout(() => {
+        setflash(false)
+      }, 100)
+    }, 1000)
+  }, [])
+
   return (
     <>
-      <div className={styles.container}>
-        <button onClick={handleClick}>
-          Det
+      <div className={styles.home} style={isFlash ? {
+        background: 'rgba(255, 255, 255, 0.7)'
+      } : {}}>
+        <p className={styles.text}>
+          {`${time.getHours().toString().padStart(2,'0')}:${time.getMinutes().toString().padStart(2,'0')}`}
+        </p>
+        <button className={styles.button} onClick={handleClick}>
+          停止
         </button>
       </div>
     </>

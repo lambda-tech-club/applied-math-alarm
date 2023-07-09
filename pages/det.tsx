@@ -1,7 +1,6 @@
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router';
 import { useRef, useEffect, useState } from 'react'
-import Head from 'next/head'
 import MathJax from "react-mathjax";
 import styles from '../styles/Home.module.css'
 
@@ -28,12 +27,17 @@ const Determinant: NextPage = ({chime, correct, incorrect}) => {
       router.push('/wakeup')
     } else {
       incorrect.current.play()
+      setflash(true)
+      setTimeout(() => {
+        setflash(false)
+      }, 200);
     }
   }
 
   const router = useRouter();
   const [A, setA] = useState(generateElements());
   const [ans, setAns] = useState('');
+  const [isFlash, setflash] = useState(false);
   console.log(det(A))
 
   const formula = String.raw`
@@ -46,13 +50,19 @@ const Determinant: NextPage = ({chime, correct, incorrect}) => {
   
   return (
     <>
-      <MathJax.Provider>
-        <MathJax.Node formula={formula} />
-        <MathJax.Node inline formula="\det A" />
-        を求めよ
-      </MathJax.Provider>
-      <input type="text" value={ans} onChange={(e) => {setAns(e.target.value)}} inputMode="numeric" pattern="\d*" />
-      <button onClick={verify}>verify</button>
+      <div className={styles.formula} style={isFlash ? {
+        background: 'rgba(255, 0, 0, 0.7)'
+      } : {}}>
+        <MathJax.Provider>
+          <MathJax.Node formula={formula} />
+          <MathJax.Node inline formula="\det A" />
+          を求めよ
+        </MathJax.Provider>
+        <input className={styles.textbox} placeholder="回答を入力" type="text" value={ans} onChange={(e) => {setAns(e.target.value)}} inputMode="numeric" pattern="\d*" />
+        <button className={styles.button} onClick={verify}>
+          決定
+        </button>
+      </div>
     </>
   )
 }
