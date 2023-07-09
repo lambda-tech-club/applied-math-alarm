@@ -1,41 +1,33 @@
 import type { NextPage } from 'next'
-import { useRef, useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
-const RemoteButton = ({ command, children }) => {
-  const chime = useRef()
+const Home: NextPage = ({chime, start}) => {
+  const router = useRouter();
 
-  useEffect(() => {
-    chime.current = new Audio("/se/chime.mp3")
-  }, [])
+  const snooze = async () => {
+    const pressButton = await fetch(`/api/send?command=2`)
+    console.log(await pressButton.json())
+    const releaseButton = await fetch(`/api/send?command=off`)
+    console.log(await releaseButton.json())
+  }
 
-  const handleClickButton = async (): void => {
+  const handleClick = () => {
+    snooze()
+    chime.current.loop = true
     chime.current.play()
-    const bot = await fetch(`/api/send?command=${command}`)
-    console.log(await bot.json())
+    start.current.play()
+    router.push('/det')
   }
 
   return (
     <>
-      <Image
-        onClick={handleClickButton}
-        src="/img/close.png"
-        width={250}
-        height={250}
-      />
-    </>
-  )
-}
-
-const Home: NextPage = () => {
-  return (
-    <>
       <div className={styles.container}>
-        <RemoteButton command="1"></RemoteButton>
-        <RemoteButton command="2"></RemoteButton>
-        <RemoteButton command="off"></RemoteButton>
+        <button onClick={handleClick}>
+          Det
+        </button>
       </div>
     </>
   )

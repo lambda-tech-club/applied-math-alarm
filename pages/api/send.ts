@@ -34,8 +34,9 @@ export default async function handler(req, res) {
   }
 
   try {
-    const response = await fetch(`https://api.switch-bot.com/v1.1/devices/${DEVICE_ID}/commands`, options)
-    const json = await response.json()
+    // const response = await fetch(`https://api.switch-bot.com/v1.1/devices/${DEVICE_ID}/commands`, options)
+    // const json = await response.json()
+    const json = { message: "mock" }
     res.status(200).json({ message: json.message })
   } catch (error) {
     console.error(error)
