@@ -8,7 +8,7 @@ const RemoteButton = ({ command, children }) => {
   const chime = useRef()
 
   useEffect(() => {
-    chime.current = new Audio("/se/chime.wav")
+    chime.current = new Audio("/se/chime.mp3")
   }, [])
 
   const handleClickButton = async (): void => {
