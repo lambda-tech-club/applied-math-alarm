@@ -28,6 +28,8 @@ const Differential: NextPage = ({chime, correct, incorrect}) => {
       setflash(true)
       setTimeout(() => {
         setflash(false)
+        setC1('')
+        setC2('')
       }, 200)
     }
   }
@@ -53,7 +55,7 @@ const Differential: NextPage = ({chime, correct, incorrect}) => {
       } : {}}>
         <MathJax.Provider>
           <MathJax.Node formula={equation} />
-          <MathJax.Node inline formula="x = C_{1}e^{\alpha x} + C_{2}e^{\beta x}" />
+          <MathJax.Node inline formula="x = C_{1}e^{\alpha t} + C_{2}e^{\beta t}" />
           とすると
         </MathJax.Provider>
         <p>

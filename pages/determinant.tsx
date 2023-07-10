@@ -30,6 +30,7 @@ const Determinant: NextPage = ({chime, correct, incorrect}) => {
       setflash(true)
       setTimeout(() => {
         setflash(false)
+        setAns('')
       }, 200)
     }
   }
