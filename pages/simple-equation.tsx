@@ -18,7 +18,7 @@ interface Question {
  */
 const randint = (min: number, max: number): number => Math.floor(Math.random() * (max - min)) + min
 
-const Integral: NextPage = ({chime, correct, incorrect}) => {
+const SimpleEquation: NextPage = ({chime, correct, incorrect}) => {
   const createQuestion = (): Question => {
     const x = randint(-10, 10)
 
@@ -84,4 +84,4 @@ const Integral: NextPage = ({chime, correct, incorrect}) => {
   )
 }
 
-export default Integral
+export default SimpleEquation
