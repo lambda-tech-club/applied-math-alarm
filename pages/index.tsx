@@ -1,10 +1,9 @@
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react'
-import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
-const Home: NextPage = ({chime, start}) => {
+const Home: NextPage<AudioRefs> = ({chime, start}) => {
   const router = useRouter();
 
   const snooze = async () => {
@@ -22,13 +21,13 @@ const Home: NextPage = ({chime, start}) => {
     router.push('/integral')
   }
 
-  const [isFlash, setflash] = useState(false);
+  const [isFlash, setFlash] = useState(false);
   const time = new Date()
   useEffect(() => {
     setInterval(() => {
-      setflash(true)
+      setFlash(true)
       setTimeout(() => {
-        setflash(false)
+        setFlash(false)
       }, 100)
     }, 1000)
   }, [])

@@ -4,10 +4,10 @@ import { useRef, useEffect } from 'react'
 import Head from 'next/head'
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const chime = useRef()
-  const start = useRef()
-  const correct = useRef()
-  const incorrect = useRef()
+  const chime = useRef<HTMLAudioElement>()
+  const start = useRef<HTMLAudioElement>()
+  const correct = useRef<HTMLAudioElement>()
+  const incorrect = useRef<HTMLAudioElement>()
   useEffect(() => {
     chime.current = new Audio("/se/chime.mp3")
     start.current = new Audio("/se/start.mp3")
