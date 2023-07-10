@@ -1,12 +1,12 @@
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import { useRef, useEffect, useState } from 'react'
+import { useState } from 'react'
 import MathJax from "react-mathjax"
 import styles from '../styles/Home.module.css'
 
-const Differential: NextPage = ({chime, correct, incorrect}) => {
+const Differential: NextPage<AudioRefs> = ({chime, correct, incorrect}) => {
 
-  const generateSolution = () => {
+  const generateSolution = () :number[] => {
     const solution = Array.from({ length: 2 }, () =>
       Math.floor(Math.random() * 9 + 1)
     )
@@ -25,9 +25,9 @@ const Differential: NextPage = ({chime, correct, incorrect}) => {
       router.push('/wakeup')
     } else {
       incorrect.current.play()
-      setflash(true)
+      setFlash(true)
       setTimeout(() => {
-        setflash(false)
+        setFlash(false)
         setC1('')
         setC2('')
       }, 200)
@@ -39,7 +39,7 @@ const Differential: NextPage = ({chime, correct, incorrect}) => {
   const [S, setS] = useState(generateSolution())
   const [C1, setC1] = useState('')
   const [C2, setC2] = useState('')
-  const [isFlash, setflash] = useState(false)
+  const [isFlash, setFlash] = useState(false)
   console.log(S)
 
   const equation = String.raw`

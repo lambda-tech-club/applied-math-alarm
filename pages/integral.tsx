@@ -1,16 +1,16 @@
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import { useRef, useEffect, useState } from 'react'
+import { useState } from 'react'
 import MathJax from "react-mathjax"
 import styles from '../styles/Home.module.css'
 
-const Integral: NextPage = ({chime, correct, incorrect}) => {
-  const integral = (r, s, c) => 
+const Integral: NextPage<AudioRefs> = ({chime, correct, incorrect}) => {
+  const integral = (r:number[], s:number[], c:number[]) => 
     c[0] / 3 * (Math.pow(r[1], 3) - Math.pow(r[0], 3)) * (Math.pow(s[1], 1) - Math.pow(s[0], 1))
     + c[1] / 4 * (Math.pow(r[1], 2) - Math.pow(r[0], 2)) * (Math.pow(s[1], 2) - Math.pow(s[0], 2))
     + c[2] / 3 * (Math.pow(r[1], 1) - Math.pow(r[0], 1)) * (Math.pow(s[1], 3) - Math.pow(s[0], 3))
 
-  const generateRange = () => {
+  const generateRange = ():number[] => {
     const range = Array.from({ length: 2 }, () =>
       Math.floor(Math.random() * 10)
     )
@@ -18,7 +18,7 @@ const Integral: NextPage = ({chime, correct, incorrect}) => {
     return range[0] === range[1] ? generateRange() : range.sort()
   }
 
-  const generateCoefficients = (seeds) => {
+  const generateCoefficients = (seeds:number[]):number[] => {
     const coefficients = seeds.map(s => Math.floor(Math.random() * 5 + 1) * s)
     // 約分できるような係数を生成
     return coefficients
@@ -33,9 +33,9 @@ const Integral: NextPage = ({chime, correct, incorrect}) => {
       router.push('/wakeup')
     } else {
       incorrect.current.play()
-      setflash(true)
+      setFlash(true)
       setTimeout(() => {
-        setflash(false)
+        setFlash(false)
         setAns('')
       }, 200)
     }
@@ -46,7 +46,7 @@ const Integral: NextPage = ({chime, correct, incorrect}) => {
   const [S, setS] = useState(generateRange())
   const [C, setC] = useState(generateCoefficients([3, 4, 3]))
   const [ans, setAns] = useState('')
-  const [isFlash, setflash] = useState(false)
+  const [isFlash, setFlash] = useState(false)
   console.log(integral(R, S, C))
 
   const formula = String.raw`

@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import { useRef, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import MathJax from "react-mathjax"
 import styles from '../styles/Home.module.css'
 
@@ -18,7 +18,7 @@ interface Question {
  */
 const randint = (min: number, max: number): number => Math.floor(Math.random() * (max - min)) + min
 
-const SimpleEquation: NextPage = ({chime, correct, incorrect}) => {
+const SimpleEquation: NextPage<AudioRefs> = ({chime, correct, incorrect}) => {
   const createQuestion = (): Question => {
     const x = randint(-10, 10)
 
@@ -53,9 +53,9 @@ const SimpleEquation: NextPage = ({chime, correct, incorrect}) => {
       router.push('/wakeup')
     } else {
       incorrect.current.play()
-      setflash(true)
+      setFlash(true)
       setTimeout(() => {
-        setflash(false)
+        setFlash(false)
         setAns('')
       }, 200)
     }
@@ -63,7 +63,7 @@ const SimpleEquation: NextPage = ({chime, correct, incorrect}) => {
 
   const router = useRouter()
   const [ans, setAns] = useState('')
-  const [isFlash, setflash] = useState(false)
+  const [isFlash, setFlash] = useState(false)
   return (
     <>
       <div className={styles.formula} style={isFlash ? {
