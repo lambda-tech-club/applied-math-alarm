@@ -1,8 +1,7 @@
 import type { NextPage } from 'next'
-import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
-const WakwUp: NextPage = () => {
+const WakeUp: NextPage = () => {
   return (
     <>
       <div className={styles.wakeup}>
@@ -14,4 +13,4 @@ const WakwUp: NextPage = () => {
   )
 }
 
-export default WakwUp
+export default WakeUp
