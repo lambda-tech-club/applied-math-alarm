@@ -1,8 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import crypto from 'crypto'
 
-export default async function handler(req, res) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { TOKEN, SECRET, DEVICE_ID } = process.env
+  if (TOKEN == undefined || SECRET == undefined || DEVICE_ID == undefined ) return;
   const t = Date.now()
   const nonce = "sb6l1dzp" // random
   const data = TOKEN + t + nonce
@@ -17,6 +18,9 @@ export default async function handler(req, res) {
     "commandType": "customize"
   }
 
+  const bodyString = JSON.stringify(body)
+  const contentLength = Buffer.byteLength(bodyString, 'utf-8')
+
   const options = {
     hostname: 'api.switch-bot.com',
     port: 443,
@@ -28,9 +32,9 @@ export default async function handler(req, res) {
       nonce,
       t,
       'Content-Type': 'application/json',
-      'Content-Length': body.length,
+      'Content-Length': contentLength,
     },
-    body: JSON.stringify(body)
+    body: bodyString
   }
 
   try {
