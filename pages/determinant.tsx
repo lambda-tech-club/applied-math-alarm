@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/router'
 import { useRef, useEffect, useState } from 'react'
-import MathJax from "react-mathjax";
+import MathJax from "react-mathjax"
 import styles from '../styles/Home.module.css'
 
 const Determinant: NextPage = ({chime, correct, incorrect}) => {
@@ -14,7 +14,7 @@ const Determinant: NextPage = ({chime, correct, incorrect}) => {
     const elements = Array.from({ length: 3 }, () =>
       Array.from({ length: 3 }, () => Math.floor(Math.random() * 10))
     )
-    // 解答欄の都合上答えが性になるまで生成を繰り返す
+    // 解答欄の都合上答えが正になるまで生成を繰り返す
     return det(elements) < 0 ? generateElements() : elements
   }
 
@@ -30,14 +30,14 @@ const Determinant: NextPage = ({chime, correct, incorrect}) => {
       setflash(true)
       setTimeout(() => {
         setflash(false)
-      }, 200);
+      }, 200)
     }
   }
 
-  const router = useRouter();
-  const [A, setA] = useState(generateElements());
-  const [ans, setAns] = useState('');
-  const [isFlash, setflash] = useState(false);
+  const router = useRouter()
+  const [A, setA] = useState(generateElements())
+  const [ans, setAns] = useState('')
+  const [isFlash, setflash] = useState(false)
   console.log(det(A))
 
   const formula = String.raw`

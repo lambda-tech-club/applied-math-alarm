@@ -19,7 +19,7 @@ const Home: NextPage = ({chime, start}) => {
     chime.current.loop = true
     chime.current.play()
     start.current.play()
-    router.push('/det')
+    router.push('/integral')
   }
 
   const [isFlash, setflash] = useState(false);
