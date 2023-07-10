@@ -21,17 +21,23 @@ const handleClick = () => {
 http://localhost:3000/integral
 ```
 
+<img width="1002" alt="int" src="https://github.com/yoidea/applied-math-alerm/assets/26201815/1c369855-96ff-44ef-839b-39842a175dc8">
+
 #### 微分方程式
 
 ```
 http://localhost:3000/differential
 ```
 
+<img width="876" alt="diff" src="https://github.com/yoidea/applied-math-alerm/assets/26201815/c5413257-8074-431f-8afa-dd7245dace04">
+
 #### 行列式
 
 ```
 http://localhost:3000/determinant
 ```
+
+<img width="974" alt="det" src="https://github.com/yoidea/applied-math-alerm/assets/26201815/f6fb3aca-d9e2-4973-888c-2131546f1ba8">
 
 ### 起動方法
 
