@@ -4,13 +4,13 @@ import { useRef, useEffect, useState } from 'react'
 import MathJax from "react-mathjax"
 import styles from '../styles/Home.module.css'
 
-const Determinant: NextPage = ({chime, correct, incorrect}) => {
-  const det = (e) => 
+const Determinant: NextPage<AudioRefs> = ({chime, correct, incorrect}) => {
+  const det = (e: number[][]) => 
     e[0][0] * e[1][1] * e[2][2] - e[0][0] * e[1][2] * e[2][1]
     + e[0][1] * e[1][2] * e[2][0] - e[0][1] * e[1][0] * e[2][2]
     + e[0][2] * e[1][0] * e[2][1] - e[0][2] * e[1][1] * e[2][0]
 
-  const generateElements = () => {
+  const generateElements = (): number[][]=> {
     const elements = Array.from({ length: 3 }, () =>
       Array.from({ length: 3 }, () => Math.floor(Math.random() * 10))
     )
@@ -27,9 +27,9 @@ const Determinant: NextPage = ({chime, correct, incorrect}) => {
       router.push('/wakeup')
     } else {
       incorrect.current.play()
-      setflash(true)
+      setFlash(true)
       setTimeout(() => {
-        setflash(false)
+        setFlash(false)
         setAns('')
       }, 200)
     }
@@ -38,7 +38,7 @@ const Determinant: NextPage = ({chime, correct, incorrect}) => {
   const router = useRouter()
   const [A, setA] = useState(generateElements())
   const [ans, setAns] = useState('')
-  const [isFlash, setflash] = useState(false)
+  const [isFlash, setFlash] = useState(false)
   console.log(det(A))
 
   const formula = String.raw`
