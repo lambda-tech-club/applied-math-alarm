@@ -47,6 +47,19 @@
   margin: 2rem;
 }
 
+.diffans {
+  width: 15%;
+  font-size: 3rem;
+  text-align: center;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.3);
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+  border-style: none;
+  color: #fff;
+  margin: 1rem;
+}
+
 .text {
   font-size: 10rem;
   text-align: center;
