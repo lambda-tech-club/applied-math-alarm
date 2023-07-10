@@ -78,7 +78,7 @@ const QEquation: NextPage = ({ chime, correct, incorrect }) => {
     if (answers.some(answer => filteredAnswers.includes(answer))) {
       chime.current.pause()
       correct.current.play()
-      const result = await fetch(`/api/send?command=1`)
+      const result = await fetch(`/api/send?command=1`) // Faild to Fetch ..?
       console.log(await result.json())
       router.push('/wakeup')
     } else {
@@ -102,7 +102,7 @@ const QEquation: NextPage = ({ chime, correct, incorrect }) => {
       } : {}}>
         <MathJax.Provider>
           <MathJax.Node formula={questionText} />
-          <MathJax.Node formula="x" inline /> の値を求めよ
+          <MathJax.Node formula="x" inline /> の値を求めよ 
         </MathJax.Provider>
         <div>
           <input className={styles.textbox} placeholder="x1 || x2 (null)" type="text" value={ans} onChange={(e) => { setAns(e.target.value) }} inputMode="numeric"/>
