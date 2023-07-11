@@ -54,7 +54,7 @@ const QEquation: NextPage = ({ chime, correct, incorrect }) => {
   }, [])
 
   const verify = async () => {
-    const parsedAnswers = ans.split("||").map(answer => answer.trim())
+    const parsedAnswers = ans.split(",").map(answer => answer.trim())
 
     const parsedIntAnswers = parsedAnswers.map(answer => {
       const parsedFraction = answer.split("/") // 分数処理
@@ -105,7 +105,7 @@ const QEquation: NextPage = ({ chime, correct, incorrect }) => {
           解を求めよ 
         </MathJax.Provider>
         <div>
-          <input className={styles.textbox} placeholder="x1 || x2" type="text" value={ans} onChange={(e) => { setAns(e.target.value) }} inputMode="numeric"/>
+          <input className={styles.textbox} placeholder="x1 , x2" type="text" value={ans} onChange={(e) => { setAns(e.target.value) }} inputMode="numeric"/>
         </div>
         <button className={styles.button} onClick={verify}>
           決定
@@ -117,7 +117,7 @@ const QEquation: NextPage = ({ chime, correct, incorrect }) => {
 
 /*
 回答形式
-x1 || x2
+x1 , x2
 解が存在しない場合はnull
 */
 
