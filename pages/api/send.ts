@@ -1,9 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import crypto from 'crypto'
 
-export default async function handler(req, res) {
-  const { TOKEN, SECRET, DEVICE_ID } = process.env
-  const t = Date.now()
+export default async function handler(req: NextApiRequest, res:  NextApiResponse) {
+  const { TOKEN, SECRET, DEVICE_ID, ALARM_ENV } = process.env
+  const t = Date.now().toString()
   const nonce = "sb6l1dzp" // random
   const data = TOKEN + t + nonce
   const sign = crypto.createHmac('sha256', SECRET)
@@ -11,11 +11,11 @@ export default async function handler(req, res) {
     .digest()
     .toString("base64")
 
-  const body = {
+  const body = JSON.stringify({
     "command": req.query.command,
     "parameter": "default",
     "commandType": "customize"
-  }
+  })
 
   const options = {
     hostname: 'api.switch-bot.com',
@@ -28,18 +28,21 @@ export default async function handler(req, res) {
       nonce,
       t,
       'Content-Type': 'application/json',
-      'Content-Length': body.length,
+      'Content-Length': body.length.toString(),
     },
-    body: JSON.stringify(body)
+    body
   }
 
-  try {
-    // const response = await fetch(`https://api.switch-bot.com/v1.1/devices/${DEVICE_ID}/commands`, options)
-    // const json = await response.json()
-    const json = { message: "mock" }
-    res.status(200).json({ message: json.message })
-  } catch (error) {
-    console.error(error)
-    res.status(500).json({ message: 'Error' })
+  if (ALARM_ENV === 'production') {
+    try {
+      const response = await fetch(`https://api.switch-bot.com/v1.1/devices/${DEVICE_ID}/commands`, options)
+      const json = await response.json()
+      res.status(200).json({ message: json.message })
+    } catch (error) {
+      console.error(error)
+      res.status(500).json({ message: 'Error' })
+    }
+  } else {
+    res.status(200).json({ message: "mock" })
   }
 }
