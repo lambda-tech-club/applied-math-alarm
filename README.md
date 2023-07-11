@@ -55,7 +55,7 @@ http://localhost:3000/determinant
 下記コマンドを実行するととりあえず動きます
 
 ```bash
-touch .env.local && echo "TOKEN=tokentokentoken" > .env.local && echo "SECRET=secretsecret" >> .env.local && echo "DEVICE_ID=02-00000000" >> .env.local && echo "ALARM_ENV=development" >> .env.local
+echo "TOKEN=tokentokentoken" > .env.local && echo "SECRET=secretsecret" >> .env.local && echo "DEVICE_ID=02-00000000" >> .env.local && echo "ALARM_ENV=development" >> .env.local
 ```
 
 2. 開発サーバーを起動
