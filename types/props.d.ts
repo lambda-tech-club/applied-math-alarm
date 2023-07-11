@@ -4,5 +4,3 @@ type AudioRefs = {
   incorrect: MutableRefObject<HTMLAudioElement | undefined> | MutableRefObject<HTMLAudioElement | undefined>,
   start: MutableRefObject<HTMLAudioElement | undefined> | MutableRefObject<HTMLAudioElement | undefined>,
 };
-
-declare module 'react-mathjax';
