@@ -6,9 +6,9 @@ import styles from '../styles/Home.module.css'
 
 /**
  * @param x 解(暫定)
- * @param a 次数
- * @param b 係数
- * @param c 定数 
+ * @param a 次数 // -8 ~ 8
+ * @param b 係数 // 2 ~ 12
+ * @param c 定数 // a,b,xから算出
  */
 
 interface Question {
@@ -20,7 +20,7 @@ interface Question {
 
 const randint = (min: number, max: number): number => Math.floor(Math.random() * (max - min)) + min
 
-const QEquation: NextPage = ({ chime, correct, incorrect }) => {
+const QEquation: NextPage = ({ chime, correct, incorrect }: any) => {
   const createQuestion = (): Question => {
     let x: number | null = null
     let a: number
