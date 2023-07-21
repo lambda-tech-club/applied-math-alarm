@@ -2,7 +2,7 @@
 
 ### YouTube動画
 
-<a href="https://youtu.be/SaouHglJTD0"><img width="720" alt="thumbnail" src="https://i9.ytimg.com/vi/SaouHglJTD0/maxresdefault.jpg"></a>
+[![maxresdefault](https://github.com/yoidea/applied-math-alarm/assets/26201815/6a1d5edb-8c8e-4d3c-b1c3-0a7d5ce1d269)](https://youtu.be/SaouHglJTD0)
 https://youtu.be/SaouHglJTD0
 
 ### 問題パターン
