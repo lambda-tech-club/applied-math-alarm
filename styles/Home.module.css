@@ -47,6 +47,44 @@
   margin: 2rem;
 }
 
+.textbox_box {
+  display: flex;
+}
+
+.textbox_comma {
+  padding-top: 40px;
+}
+
+.textbox_child {
+  width: 35%;
+  font-size: 3rem;
+  text-align: center;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.3);
+  padding: 0.5rem 3rem;
+  border-radius: 3rem;
+  border-style: none;
+  color: #fff;
+  margin: 2rem 10px;
+}
+
+.textbox_method {
+  display: flex;
+  flex-direction: column;
+  margin-top: 25px;
+  margin-left: 30px;
+}
+
+.textbox_method button {
+  width: 40px;
+  height: 40px;
+  border-radius: 9999px;
+  background-color: transparent;
+  color: #f1f1f1;
+  font-size: 20px;
+  font-weight: bold;
+}
+
 .diffans {
   width: 15%;
   font-size: 3rem;
