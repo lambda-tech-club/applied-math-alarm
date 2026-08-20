@@ -2,7 +2,7 @@
 
 ### YouTube動画
 
-<a href="https://youtu.be/SaouHglJTD0"><img width="720" alt="thumbnail" src="https://i9.ytimg.com/vi/SaouHglJTD0/maxresdefault.jpg"></a>
+<a href="https://youtu.be/SaouHglJTD0"><img width="720" alt="thumbnail" src="https://i.ytimg.com/vi/SaouHglJTD0/maxresdefault.jpg"></a>
 https://youtu.be/SaouHglJTD0
 
 ### 問題パターン
